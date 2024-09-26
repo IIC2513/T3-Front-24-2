@@ -1,0 +1,30 @@
+.message-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--border-color); /* Borde superior */
+    background-color: var(--bg-chat); /* Utiliza el fondo del chat */
+  }
+  
+  .message-input input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid var(--border-color); /* Utiliza el color del borde */
+    border-radius: 20px;
+    outline: none;
+  }
+  
+  .message-input button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: var(--accent-color); /* Botón usando color de acento */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .message-input button:hover {
+    background-color: #075e54; /* Color de hover del botón */
+  }
+  

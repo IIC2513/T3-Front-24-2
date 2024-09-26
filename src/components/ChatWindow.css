@@ -1,0 +1,59 @@
+ 
+  .chat-window {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-chat); /* Utiliza el fondo de la paleta de colores */
+  }
+  
+  .messages-container {
+    background-image: url('/src/assets/imgs/ImagenProfe.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--bg-chat); /* Fondo del contenedor de mensajes */
+  }
+  
+  .message {
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 60%;
+    border-radius: 5px;
+    word-wrap: break-word;
+    display: inline-block;
+    z-index: 1;
+    color: var(--text-main); /* Usa el color de texto principal */
+  }
+  
+  .sent {
+    background-color: var(--message-sent); /* Mensajes enviados usando el color de la paleta */
+    align-self: flex-end;
+    color: var(--text-main); /* Color del texto principal */
+  }
+  
+  .received {
+    background-color: var(--message-received); /* Mensajes recibidos usando el color de la paleta */
+    align-self: flex-start;
+    color: var(--text-main); /* Color del texto principal */
+  }
+  
+  .message-text {
+    font-size: 1em;
+    color: var(--text-main); /* Color del texto de los mensajes */
+    white-space: pre-wrap;
+  }
+  
+  input::placeholder {
+    color: var(--text-placeholder); /* Color del placeholder del input */
+  }
+  
+  .chat-list {
+    border-right: 1px solid var(--border-color); /* Aplicar el color del borde */
+  }
+  

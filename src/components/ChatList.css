@@ -1,0 +1,33 @@
+.chat-list {
+    width: 20%;
+    background-color: var(--bg-main);
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+  }
+  
+  .chat-item {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+  }
+  
+  .chat-item:hover {
+    background-color: var(--message-sent);
+  }
+  
+  .chat-name {
+    color: var(--text-main);
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .chat-last-message {
+    color: var(--text-main);
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
