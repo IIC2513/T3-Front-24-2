@@ -1,13 +1,28 @@
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-}
-
 .app-container {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100vh; /* Asegúrate de que ocupe toda la pantalla */
+  width: 100vw; /* Asegúrate de que ocupe todo el ancho */
+}
+
+.chat-sidebar {
+  width: 20%; /* Mantén el mismo ancho de la barra lateral */
+  display: flex;
+  flex-direction: column; /* Organiza los elementos en columna */
+  background-color: var(--bg-main);
+  border-right: 1px solid var(--border-color); /* Solo un borde a la derecha */
+}
+
+.create-chat-button-container {
+  flex-shrink: 0; /* Evita que se reduzca su tamaño */
+  padding: 10px; /* Añade algo de padding */
+  background-color: var(--bg-main); /* Mantén el mismo fondo */
+}
+
+.chat-list {
+  flex: 1; /* Ocupa el resto del espacio disponible */
+  overflow-y: auto; /* Permite el desplazamiento si hay muchos chats */
+  background-color: var(--bg-main); /* Fondo predeterminado */
+  margin: 0; /* Elimina cualquier margen */
+  padding: 0; /* Elimina cualquier padding */
+  border-top: 1px solid var(--border-color); /* Añade un borde superior para separar del botón */
 }

@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './MessageInput.css';
+import { useNavigate } from 'react-router-dom';
 
-const MessageInput = () => {
+const MessageInput = ({ chatId }) => {
   const [message, setMessage] = useState('');
+  const username = localStorage.getItem('username');
+  const navigate = useNavigate();
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (message.trim()) {
-      console.log('Enviar mensaje:', message);
-      setMessage('');
+      try {
+        await axios.post('http://localhost:3000/messages', {
+          body: message,
+          sender: username,
+          chatId: chatId
+        });
+        setMessage('');
+      } catch (error) {
+        console.error('Error sending message:', error);
+      }
     }
   };
 

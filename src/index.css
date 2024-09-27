@@ -16,9 +16,10 @@
   --message-sent: #6d95c2;
   --message-received: #E9E9E9;
   --text-main: #2C2C2C;
-  --text-placeholder: #8A8A8A;
+  --text-placeholder: #353535;
   --border-color: #D3D3D3;
   --accent-color: #0088cc;
+  --error-color: #e71010;
 }
 
 a {
@@ -60,6 +61,11 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 1.2em;
 }
 
 @media (prefers-color-scheme: light) {

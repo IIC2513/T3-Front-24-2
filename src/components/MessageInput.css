@@ -1,8 +1,8 @@
 .message-input {
     display: flex;
-    padding: 10px;
     border-top: 1px solid var(--border-color); /* Borde superior */
     background-color: var(--bg-chat); /* Utiliza el fondo del chat */
+    padding: 10px;
   }
   
   .message-input input {
