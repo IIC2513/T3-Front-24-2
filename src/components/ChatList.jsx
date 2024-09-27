@@ -13,7 +13,23 @@ const ChatList = ({ setSelectedChat, chats, setChats }) => {
     const fetchChats = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/users/${username}/chats`);
-        setChats(response.data);
+        const chatsData = response.data;
+
+        const chatsWithLastMessage = await Promise.all(
+          chatsData.map(async (chat) => {
+            try {
+              const messagesResponse = await axios.get(`http://localhost:3000/chats/${chat.id}/messages`);
+              const messages = messagesResponse.data;
+              const lastMessage = messages.length > 0 ? messages[messages.length - 1].body : 'No hay mensajes aún';
+              return { ...chat, lastMessage };
+            } catch (error) {
+              console.error(`Error fetching messages for chat ${chat.id}:`, error);
+              return { ...chat, lastMessage: 'Error al cargar el mensaje' };
+            }
+          })
+        );
+
+        setChats(chatsWithLastMessage);
       } catch (error) {
         setError(error.response ? error.response.data.message : 'Error fetching chats');
       } finally {
@@ -24,6 +40,21 @@ const ChatList = ({ setSelectedChat, chats, setChats }) => {
     fetchChats();
   }, [username, setChats]);
 
+  const deleteChat = async (chatId) => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este chat?')) {
+      try {
+        await axios.delete(`http://localhost:3000/chats/${chatId}`);
+        
+        setChats(chats.filter(chat => chat.id !== chatId));
+        navigate(`/chats/${username}`);
+        setSelectedChat(null);
+      } catch (error) {
+        console.error('Error deleting chat:', error);
+        alert('Hubo un error al eliminar el chat. Por favor, intenta de nuevo.');
+      }
+    }
+  };
+
   if (loading) return <div>Cargando chats...</div>;
 
   return (
@@ -33,10 +64,20 @@ const ChatList = ({ setSelectedChat, chats, setChats }) => {
           <div 
             key={chat.id} 
             className="chat-item"
-            onClick={() => {setSelectedChat(chat); navigate(`/chats/${username}/${chat.id}`)}}
           >
-            <div className="chat-name">{chat.user1 === username ? chat.user2 : chat.user1}</div>
-            <div className="chat-last-message">{chat.lastMessage || 'No hay mensajes aún'}</div>
+            <div 
+              className="chat-details"
+              onClick={() => { setSelectedChat(chat); navigate(`/chats/${username}/${chat.id}`); }}
+            >
+              <div className="chat-name">{chat.username1 === username ? chat.username2 : chat.username1}</div>
+              <div className="chat-last-message">{chat.lastMessage}</div>
+            </div>
+            <button 
+              className="delete-chat-button"
+              onClick={() => deleteChat(chat.id)}
+            >
+              ×
+            </button>
           </div>
         ))
       ) : (

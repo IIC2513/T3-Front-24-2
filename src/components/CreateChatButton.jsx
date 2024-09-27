@@ -7,7 +7,6 @@ const CreateChatButton = ({ setChats }) => {
   const { username } = useParams();
   const [users, setUsers] = useState([]);
   const [showUserList, setShowUserList] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
 
   const fetchUsers = async () => {
     try {
@@ -22,25 +21,30 @@ const CreateChatButton = ({ setChats }) => {
 
   const createChatWithUser = async (otherUser) => {
     try {
-      const response = await axios.get(`http://localhost:3000/users/${username}/chats`);
-      const existingChat = response.data.find(chat =>
-        (chat.user1 === username && chat.user2 === otherUser) ||
-        (chat.user1 === otherUser && chat.user2 === username)
-      );
+      const chatExist = await axios.get(`http://localhost:3000/chats/${username}/${otherUser}`);
 
-      if (existingChat) {
-        setAlertMessage(`Ya existe un chat con el usuario ${otherUser}.`);
+      if (chatExist.data) {
+        alert('Ya existe un chat con este usuario');
         return;
       }
-
-      const newChatResponse = await axios.post('http://localhost:3000/chats', {
-        user1: username,
-        user2: otherUser,
-      });
-      setChats(prevChats => [...prevChats, newChatResponse.data]);
-      setShowUserList(false);
     } catch (error) {
-      console.error('Error creating chat:', error);
+      if (error.response && error.response.status === 404) {
+        try {
+          const response = await axios.post('http://localhost:3000/chats', { username1: username, username2: otherUser });
+          if (response.data) {
+            setChats(prevChats => [...prevChats, response.data]);
+            setShowUserList(false);
+          } else {
+            alert('Error creando chat');
+          }
+        } catch (postError) {
+          console.error('Error creating chat:', postError);
+          alert('Error creando chat');
+        }
+      } else {
+        console.error('Error checking if chat exists:', error);
+        alert('Error comprobando si el chat existe');
+      }
     }
   };
 
@@ -52,24 +56,22 @@ const CreateChatButton = ({ setChats }) => {
         <div className="user-list">
           {users.length > 0 ? (
             <>
-                {alertMessage && (
-                    <div className="alert-message">
-                    {alertMessage}
-                    </div>
-                )}
-                {users.map((user) => (
+              <div className="user-item close-button" onClick={() => setShowUserList(false)}>Cerrar</div>
+              {users.map((user) => (
                 <div 
-                    key={user.username} 
-                    className="user-item" 
-                    onClick={() => createChatWithUser(user.username)}
+                  key={user.username} 
+                  className="user-item" 
+                  onClick={() => createChatWithUser(user.username)}
                 >
-                    {user.username}
+                  {user.username}
                 </div>
-                ))}
-                <div className="user-item close-button" onClick={() => setShowUserList(false)}>Cerrar</div>
+              ))}
             </>
           ) : (
-            <div>No hay otros usuarios disponibles</div>
+            <>
+              <div className="user-item close-button" onClick={() => setShowUserList(false)}>Cerrar</div>
+              <div className='user-item'>No hay otros usuarios.</div>
+            </>
           )}
         </div>
       )}

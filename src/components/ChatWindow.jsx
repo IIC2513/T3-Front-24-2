@@ -56,7 +56,7 @@ const ChatWindow = ({ selectedChat }) => {
           messages.map((msg) => (
             <div 
               key={msg.id} 
-              className={`message ${msg.sender === username ? 'sent' : 'received'}`}
+              className={`message ${msg.username === username ? 'sent' : 'received'}`}
             >
               {msg.body}
             </div>

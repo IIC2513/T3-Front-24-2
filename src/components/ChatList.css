@@ -27,7 +27,10 @@
 
 .chat-item {
   width: 90%;
-  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
   border-bottom: 1px solid var(--border-color);
   cursor: pointer;
 }
@@ -35,6 +38,31 @@
 .chat-item:hover {
   background-color: var(--message-sent);
 }
+
+.chat-details {
+  flex: 1;
+}
+
+.delete-chat-button {
+  background-color: white;
+  color: red;
+  border: 1px solid #dcdcdc;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 5px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.delete-chat-button:hover {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
 
 .chat-name {
   color: var(--text-main);
@@ -64,18 +92,6 @@
 
 .create-chat-button:hover {
   background-color: #075e54;
-}
-
-.user-list {
-  position: absolute;
-  background-color: white;
-  border: 1px solid var(--border-color);
-  max-height: 200px;
-  overflow-y: auto;
-  width: 200px;
-  z-index: 1000;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
 }
 
 .user-item {

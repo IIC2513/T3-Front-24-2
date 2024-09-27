@@ -3,12 +3,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  margin: 0;
   background-color: var(--bg-main);
 }
 
 .create-chat-button {
   width: 90%;
-  padding: 10px;
   background-color: var(--accent-color);
   color: white;
   border: none;
@@ -27,7 +28,7 @@
   border: 1px solid var(--border-color);
   max-height: 200px;
   overflow-y: auto;
-  width: 200px;
+  width:15%;
   z-index: 1000;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
@@ -37,11 +38,19 @@
   padding: 8px;
   cursor: pointer;
   color: var(--text-placeholder);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
   border-bottom: 1px solid var(--border-color);
 }
 
 .user-item:hover {
   background-color: #c7c7c7;
+}
+
+.close-button {
+  color: var(--text-main);
+  font-weight: bold;
 }
 
 .alert-message {
