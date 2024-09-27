@@ -5,21 +5,21 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background-color: var(--bg-chat); /* Fondo principal */
+    background-color: var(--bg-chat);
   }
   
   .login-container input {
     padding: 10px;
     margin-bottom: 10px;
     font-size: 16px;
-    border: 1px solid var(--border-color); /* Borde utilizando variable */
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     outline: none;
   }
   
   .login-container button {
     padding: 10px 20px;
-    background-color: var(--accent-color); /* Botón usando el color de acento */
+    background-color: var(--accent-color);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -27,15 +27,15 @@
   }
   
   .login-container button:hover {
-    background-color: var(); /* Color del hover del botón */
+    background-color: var();
   }
   
   .login-container h2 {
-    color: var(--text-main); /* Color principal del texto */
+    color: var(--text-main);
   }
   
   .TituloBienvenida {
-    color: var(--text-main); /* Color principal del título */
+    color: var(--text-main);
     font-size: 2em;
     margin-bottom: 20px;
   }

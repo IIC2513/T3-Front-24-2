@@ -2,7 +2,7 @@
   width: 80%;
   display: flex;
   flex-direction: column;
-  height: 90%; /* Altura completa */
+  height: 90%;
   background-color: var(--bg-chat);
 }
 
@@ -22,45 +22,52 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 10px; /* Añade padding para separar los mensajes de los bordes */
+  padding: 10px;
   display: flex;
-  flex-direction: column; /* Asegúrate de que los mensajes se apilen en vertical */
+  flex-direction: column;
+}
+
+.no-chat-selected {
+  color: var(--text-placeholder);
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .message {
   padding: 10px;
-  margin: 5px 0; /* Añade margen entre los mensajes */
+  margin: 5px 0;
   max-width: 60%;
   border-radius: 10px;
   word-wrap: break-word;
   display: inline-block;
   z-index: 1;
-  color: var(--text-main); /* Usa el color de texto principal */
+  color: var(--text-main);
 }
 
 .sent {
-  background-color: #DCF8C6; /* Color de fondo para los mensajes enviados (verde claro) */
-  align-self: flex-end; /* Alinea los mensajes enviados a la derecha */
-  color: black; /* Color del texto del mensaje enviado */
+  background-color: #DCF8C6;
+  align-self: flex-end;
+  color: black;
 }
 
 .received {
-  background-color: #FFFFFF; /* Color de fondo para los mensajes recibidos (blanco) */
-  align-self: flex-start; /* Alinea los mensajes recibidos a la izquierda */
-  color: black; /* Color del texto del mensaje recibido */
-  border: 1px solid #e5e5e5; /* Añade un borde para diferenciar los mensajes recibidos */
+  background-color: #FFFFFF;
+  align-self: flex-start;
+  color: black;
+  border: 1px solid #e5e5e5;
 }
 
 .message-text {
   font-size: 1em;
-  color: var(--text-main); /* Color del texto de los mensajes */
+  color: var(--text-main);
   white-space: pre-wrap;
 }
 
 input::placeholder {
-  color: var(--text-placeholder); /* Color del placeholder del input */
+  color: var(--text-placeholder);
 }
 
 .chat-list {
-  border-right: 1px solid var(--border-color); /* Aplicar el color del borde */
+  border-right: 1px solid var(--border-color);
 }
